@@ -1,7 +1,11 @@
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("你好！");
+	    int sceneWidth = 800;
+	    int sceneHeight = 800;
+	    int N=10;
+
+	    AlgoVisualizer visualizee=new AlgoVisualizer(sceneWidth,sceneHeight,N);
+		System.out.println("你啊！");
     }
 }

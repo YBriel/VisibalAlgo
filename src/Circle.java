@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * @author: yuzq
  * @Date: 2019-02-22  14:32
@@ -8,6 +10,8 @@ public class Circle {
     public int x, y;
     private int r;
     public int vx, vy;
+    //默认空心的圆
+    public boolean isFilled=false;
 
     public Circle(int x, int y, int r, int vx, int vy) {
         this.x = x;
@@ -41,5 +45,9 @@ public class Circle {
         if(y+r>=maxy){
             y=maxy-r;vy=-vy;
         }
+    }
+
+    public boolean contains(Point p){
+        return (x-p.x)*(x-p.x)+(y-p.y)*(y-p.y)<=r*r;
     }
 }

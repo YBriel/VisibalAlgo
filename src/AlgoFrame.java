@@ -62,7 +62,11 @@ public class AlgoFrame extends JFrame {
             AlogoVisHelper.setStrokeWidth(g2d, 1);
             AlogoVisHelper.setColor(g2d, Color.RED);
             for (Circle circle : circles) {
-                AlogoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+                if(!circle.isFilled){
+                    AlogoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+                }else {
+                    AlogoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+                }
             }
         }
 
@@ -73,33 +77,31 @@ public class AlgoFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        AlgoFrame algoFrame = new AlgoFrame("welcome", 500, 500);
+        // AlgoFrame algoFrame = new AlgoFrame("welcome", 500, 500);
         int sceneWidth = 800;
         int sceneHeight = 800;
         int N = 10;
-        Circle[] circles = new Circle[10];
-        int R = 50;
-        for (int i = 0; i < N; i++) {
-            int x = (int) (Math.random() * (sceneWidth - 2 * R)) + R;
-            int y = (int) (Math.random() * (sceneHeight - 2 * R)) + R;
-            int vx = (int) (Math.random() * 11) - 5;
-            int vy = (int) (Math.random() * 11) - 5;
-            circles[i] = new Circle(x, y, R, vx, vy);
-        }
-        //事件队列，
-        new Thread(() -> {
-            while (true) {
-                algoFrame.render(circles);
-                AlogoVisHelper.pause(20);
-
-                //更新数据
-                for (Circle circle : circles) {
-                    circle.move(0,0,sceneWidth,sceneHeight);
-                }
-            }
-        }).start();
-
-
+//        Circle[] circles = new Circle[10];
+//        int R = 50;
+//        for (int i = 0; i < N; i++) {
+//            int x = (int) (Math.random() * (sceneWidth - 2 * R)) + R;
+//            int y = (int) (Math.random() * (sceneHeight - 2 * R)) + R;
+//            int vx = (int) (Math.random() * 11) - 5;
+//            int vy = (int) (Math.random() * 11) - 5;
+//            circles[i] = new Circle(x, y, R, vx, vy);
+//        }
+//        //事件队列，
+//        new Thread(() -> {
+//            while (true) {
+//                algoFrame.render(circles);
+//                AlogoVisHelper.pause(20);
+//                //更新数据
+//                for (Circle circle : circles) {
+//                    circle.move(0,0,sceneWidth,sceneHeight);
+//                }
+//            }
+//        }).start();
+        AlgoVisualizer algoVisualize = new AlgoVisualizer(sceneWidth, sceneHeight, N);
     }
 
 }
